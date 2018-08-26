@@ -1,12 +1,12 @@
-package com.khegb;
+package com.khegb.money.model;
 
 public class Dollar {
-    public int amount;
-
+    private int amount;
+    
     public Dollar(int amount) {
         this.amount = amount;
     }
-
+    
     public Dollar times(int multiplier) {
         return new Dollar(amount * multiplier);
     }
