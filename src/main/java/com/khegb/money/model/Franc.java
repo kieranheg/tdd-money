@@ -1,19 +1,18 @@
 package com.khegb.money.model;
 
-public class Franc {
-    private int amount;
+public class Franc extends Money {
+    
+    public static final String CURRENCY = "CHF";
     
     public Franc(int amount) {
-        this.amount = amount;
+        super(amount);
     }
     
-    public Franc times(int multiplier) {
-        return new Franc(amount * multiplier);
+    public Money times(int multiplier) {
+        return Money.franc(amount * multiplier);
     }
     
-    @Override
-    public boolean equals(Object obj) {
-        Franc franc = (Franc) obj;
-        return amount == franc.amount;
+    public String currency() {
+        return CURRENCY;
     }
 }

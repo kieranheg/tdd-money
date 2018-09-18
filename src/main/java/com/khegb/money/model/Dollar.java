@@ -1,19 +1,18 @@
 package com.khegb.money.model;
 
-public class Dollar {
-    private int amount;
+public class Dollar extends Money {
+    
+    public static final String CURRENCY = "USD";
     
     public Dollar(int amount) {
-        this.amount = amount;
+        super(amount);
     }
     
-    public Dollar times(int multiplier) {
-        return new Dollar(amount * multiplier);
+    public Money times(int multiplier) {
+        return Money.dollar(amount * multiplier);
     }
     
-    @Override
-    public boolean equals(Object obj) {
-        Dollar dollar = (Dollar) obj;
-        return amount == dollar.amount;
+    public String currency() {
+        return CURRENCY;
     }
 }
