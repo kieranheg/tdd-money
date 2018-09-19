@@ -1,33 +1,41 @@
 package com.khegb.money.model;
 
-public abstract class Money {
+import static com.khegb.money.common.Constants.CHF;
+import static com.khegb.money.common.Constants.USD;
+
+public class Money {
     protected int amount;
+    protected String currency;
     
-    public Money(int amount) {
+    public Money(final int amount, final String currency) {
         this.amount = amount;
+        this.currency = currency;
     }
     
     public static Money dollar(final int amount) {
-        return new Dollar(amount);
+        return new Money(amount, USD);
     }
     
     public static Money franc(final int amount) {
-        return new Franc(amount);
-    }
-    
-    public Money times(int multiplier) {
-        return null;
+        return new Money(amount, CHF);
     }
     
     @Override
     public boolean equals(Object obj) {
         Money money = (Money) obj;
         return amount == money.amount &&
-                getClass().equals(money.getClass());
+                currency().equals(money.currency());
     }
     
-    public abstract String currency();
+    public Money times(int multiplier) {
+        return new Money(amount * multiplier, currency());
+    }
     
+    public String currency() {
+        return currency;
+    }
+    
+    @Override
     public String toString() {
         return amount + " " + currency();
     }
