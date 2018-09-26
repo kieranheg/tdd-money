@@ -3,11 +3,11 @@ package com.khegb.money.model;
 import static com.khegb.money.common.Constants.CHF;
 import static com.khegb.money.common.Constants.USD;
 
-public class Money {
-    protected int amount;
-    protected String currency;
+public class Money implements Expression {
+    private int amount;
+    private String currency;
     
-    public Money(final int amount, final String currency) {
+    private Money(final int amount, final String currency) {
         this.amount = amount;
         this.currency = currency;
     }
@@ -38,5 +38,9 @@ public class Money {
     @Override
     public String toString() {
         return amount + " " + currency();
+    }
+    
+    public Expression plus(final Money addend) {
+        return new Money(amount + addend.amount, currency);
     }
 }
