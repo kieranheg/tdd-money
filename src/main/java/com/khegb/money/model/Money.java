@@ -4,10 +4,10 @@ import static com.khegb.money.common.Constants.CHF;
 import static com.khegb.money.common.Constants.USD;
 
 public class Money implements Expression {
-    private int amount;
-    private String currency;
+    public int amount;
+    public String currency;
     
-    private Money(final int amount, final String currency) {
+    Money(final int amount, final String currency) {
         this.amount = amount;
         this.currency = currency;
     }
@@ -41,6 +41,10 @@ public class Money implements Expression {
     }
     
     public Expression plus(final Money addend) {
-        return new Money(amount + addend.amount, currency);
+        return new Sum(this, addend);
+    }
+    
+    public Money reduce(String to) {
+        return this;
     }
 }
